@@ -489,6 +489,14 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
         self.collectionView.reloadData()
     }
     
+    open func invalidateLayout(force: Bool = false) {
+        if force {
+            self.collectionViewLayout.forceInvalidate()
+        } else {
+            self.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
     /// Selects the item at the specified index and optionally scrolls it into view.
     ///
     /// - Parameters:
