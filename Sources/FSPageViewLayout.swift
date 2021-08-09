@@ -265,7 +265,9 @@ class FSPagerViewLayout: UICollectionViewLayout {
         guard let collectionView = self.collectionView, let pagerView = self.pagerView else {
             return
         }
-        let currentIndex = pagerView.currentIndex
+        
+        let totalNumberOfItems = self.numberOfItems * self.numberOfSections
+        let currentIndex = min(max(0, pagerView.currentIndex), totalNumberOfItems - 1)
         let newIndexPath = IndexPath(item: currentIndex, section: pagerView.isInfinite ? self.numberOfSections/2 : 0)
         let contentOffset = self.contentOffset(for: newIndexPath)
         let newBounds = CGRect(origin: contentOffset, size: collectionView.frame.size)
